@@ -1,3 +1,5 @@
+const availableCharcters = "abcdefghijklmnopqrstuvwxyz0123456789";
+const emailProvider = ["gmail", "yahoo", "hotmail", "outlook", "icloud"];
 const firstName = ["Aabesh","Aabishkar","Aadesh","Aaryan","Abhinav","Achut","Adarsh","Akhil","Anish","Babik","Badal","Bappa","Bhaskar","Bhupal","Bibidh","Bishwaraj","Brijesh","Cheetri","Chetan","Dawa","Deepson","Denis","Dev","Dharma","Fanindra","Gagan","Ganesh","Gaurav","Girish","Gyanu","Haridas","Hem","Indra","Ishwar","Jagadish","Jeevan","Kabir","Kamal","Kanchan","Kapil","Karun","Ketan","Kirtiman","Kovid","Krsna","Kumar","Lokesh","Maansa","Madan","Madhav","Mahindra","Mangal","Manzil","Meera","Milan","Mukti","Mukul","Murali","Naval","Neel","Nehan","Nigam","Nimish","Niral","Nirav","Omprakash","Pabitra","Paresh","Pavan","Prabal","Pradeep","Pratik","Puru","Rabin","Rahul","Rakshek","Rama","Ranjit","Raz","Resham","Ridam","Rituraj","Roshan","Rudra","Sabir","Ada","Anupama","Akrodinni","Bagh","Bairagi","Bijayata","Chet","Chaitna","Charushri","Daxa","Deena","Dipika","Eakveera","Ferika","Faleesha","Gita","Ganga","Garima","Himani","Hreeta","Irsia","Ireshi","Jahan","Jwala","Januka","Jenisha","Koel","Khavia","Karishma","Laksmi","Mina","Myra","Mithu","Mahini","Mandira","Neeta","Nisha","Ojmana","Ojasini","Pihu","Puja","Priti","Pragya","Rim","Reya","Richika","Sani","Soma","Shila","Suhana","Tulsi","Tripati","Ulyana","Veerata","Vrushali"];
 const lastName = ["Adhikari","Buddhacharya","Bishwakarma","Chaudhary","Chowdhury","Chhetri","Chetry","Gurung","Magar","Maharjan","Pokharel","Rai","Shah","Shrestha","Singh","Tamang","Thapa","Tharu"];
 
@@ -23,15 +25,18 @@ figma.ui.onmessage = (msg) => {
             message = getFullName();
             break;
         case "email":
-        // code
-        case "phone":
-        // code
+            message = getEmail();
+            break;
+        case "phn":
+            message = getPhoneNumber();
+            break;
         case "address":
-        // code
+            // code
         case "date":
-        // code
+            message = getRandomDate();
+            break;
         default:
-        // code
+            // code
     }
 
     console.log(message);
@@ -69,6 +74,46 @@ const getFullName = (): string => {
     const fullName: string = `${fName} ${lName}`;
     return fullName;
 };
+
+/**
+ * Function to generate a random phone number
+ * @returns {string} phone number
+ */
+const getPhoneNumber = (): string => {
+    let phnNumber: string = `+977 984`
+    for (let i = 0; i < 7; i++) {
+        phnNumber += `${getRandomInt(0, 9)}`;
+    }
+    return phnNumber;
+}
+
+/**
+ * Funtion to generate a random email address
+ * @returns {string} email address
+ */
+const getEmail = (): string => {
+    let emailLength = getRandomInt(10, 15);
+    let email: string = "";
+    while(emailLength>0){
+        emailLength--;
+        email += availableCharcters[getRandomInt(0, availableCharcters.length)];
+    }
+    email += `@${emailProvider[getRandomInt(0, emailProvider.length)]}.com`;
+
+    return email;
+}
+
+/**
+ * Function to generate a random date
+ * @returns {string} date
+ */
+const getRandomDate = (): string => {
+    const year = getRandomInt(1970, 2020);
+    const month = getRandomInt(1, 12);
+    const day = getRandomInt(1, 28);
+    const date = `${year}-${month}-${day}`;
+    return date;
+}
 
 /**
  * Function to generate a random number within a range
