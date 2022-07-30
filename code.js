@@ -1,3 +1,4 @@
+import { getFirstName, getLastName, getFullName } from './helperFunction';
 // This shows the HTML page in "ui.html".
 figma.showUI(__html__);
 // Calls to "parent.postMessage" from within the HTML page will trigger this
@@ -6,11 +7,17 @@ figma.showUI(__html__);
 figma.ui.onmessage = msg => {
     // currently only ui is designed
     // message has not yet been passed
+    let message = '';
     switch (msg.type) {
         case "first-name":
-        // code
+            message = getFirstName();
+            break;
         case "last-name":
-        // code
+            message = getLastName();
+            break;
+        case "full-name":
+            message = getFullName();
+            break;
         case "email":
         // code
         case "phone":
@@ -22,6 +29,6 @@ figma.ui.onmessage = msg => {
         default:
         // code
     }
-    console.log(msg.type);
+    console.log(message);
     // figma.closePlugin();
 };
