@@ -43,7 +43,7 @@ figma.ui.onmessage = (msg) => {
  * Function to get first name
  * @returns {string} first name
  */
-export const getFirstName = (): string => {
+const getFirstName = (): string => {
     const randomNumber = getRandomInt(0, firstName.length);
     const fName: string = firstName[randomNumber];
     return fName;
@@ -53,7 +53,7 @@ export const getFirstName = (): string => {
  * Function to get last name
  * @returns {string} last name
  */
-export const getLastName = (): string => {
+const getLastName = (): string => {
     const randomNumber = getRandomInt(0, lastName.length);
     const lName: string = lastName[randomNumber];
     return lName;
@@ -63,7 +63,7 @@ export const getLastName = (): string => {
  * Function to get full name
  * @returns {string} full name
  */
-export const getFullName = (): string => {
+const getFullName = (): string => {
     const fName = getFirstName();
     const lName = getLastName();
     const fullName: string = `${fName} ${lName}`;
