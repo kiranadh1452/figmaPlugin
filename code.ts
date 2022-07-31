@@ -32,6 +32,7 @@ figma.ui.onmessage = async (msg) => {
             break;
         case "address":
             message = "Zero K.M, Pokhara";
+            break;
         case "date":
             message = getRandomDate();
             break;
